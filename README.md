@@ -1,3 +1,4 @@
+
 # OmniRAG — Production-Grade Adaptive RAG System
 
 > Hybrid Search · Graph RAG · Agentic RAG · Multimodal Ingestion · Multi-Document Scoping · Zero API Cost
@@ -262,6 +263,9 @@ omnirag/
 ```
 
 ---
+## 🎥 Demo
+
+[Watch Demo](https://github.com/user-attachments/assets/dc4425f2-ac5c-492a-b4d8-96a5cfac36de)
 
 ## License
 
