@@ -7,7 +7,7 @@ OmniRAG is a production-ready Retrieval-Augmented Generation system that
 LLM router, then applies cross-encoder reranking, context compression, and
 automatic evaluation — all running free on HuggingFace models.
 
-![OmniRAG chat interface answering a question with strategy routing](docs/screenshots/01-hero-chat.png)
+<img width="100%" alt="OmniRAG chat interface answering questions with strategy routing" src="https://github.com/user-attachments/assets/56ff6e32-73c4-430a-909e-60154b5fd453" />
 
 ---
 
@@ -64,27 +64,28 @@ a query can be restricted to a single source in a multi-document knowledge base.
 
 ## Demo
 
-### Adaptive routing on a factual question
+### Adaptive routing on factual questions
 
 The router selects a strategy per query and every answer is grounded in a cited
 source.
 
-![Factual question routed to hybrid retrieval with a grounded answer and single source](docs/screenshots/02-factual-routing.png)
+<img width="100%" alt="Factual questions routed to hybrid retrieval with grounded answers" src="https://github.com/user-attachments/assets/da621f64-a07a-4099-95a7-d65b60eed5be" />
 
 ### Multi-document knowledge base with source scoping
 
 The sidebar **Document** filter restricts retrieval to a single source, so a
-large document cannot drown out a small one. Note the answer cites exactly one
-source.
+large document cannot drown out a small one.
 
-![A query scoped to a single document, showing Sources (1)](docs/screenshots/03-document-filter.png)
+<img width="100%" alt="Document filter listing indexed sources for per-query scoping" src="https://github.com/user-attachments/assets/edad8b07-c785-4272-a100-96b759de9837" />
 
-### Grounded, no-hallucination behaviour
+### Observability dashboard
 
-When the relevant passage is not retrievable, OmniRAG reports insufficient
-context rather than fabricating an answer — a deliberate design property.
+Every query is traced end-to-end — per-stage latency, cache hit rate, fallback
+rate, rerank score, and routing breakdown.
 
-![The system reporting insufficient context instead of hallucinating](docs/screenshots/04-known-limitation.png)
+<img width="100%" alt="Pipeline observability tab showing per-stage latency and aggregate metrics" src="https://github.com/user-attachments/assets/127e6d05-265a-4f82-87d3-4f22aeff8c35" />
+
+<img width="100%" alt="Quality tab showing routing breakdown and score trends" src="https://github.com/user-attachments/assets/96bafb36-5e17-4647-80b5-69ba0ad25911" />
 
 ---
 
