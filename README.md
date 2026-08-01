@@ -13,27 +13,29 @@ automatic evaluation — all running free on HuggingFace models.
 
 ## Architecture
 
+```
 User query
-│
-├── Cache lookup (LRU in-memory, SHA-256 key, 1hr TTL)
-│ └── HIT → return instantly
-│
-├── Agentic router (Phi-3-mini, HF API)
-│ └── hybrid | graph | agentic
-│
-├── Multi-query expansion (5 variants, Phi-3-mini)
-│
-├── Fallback chain (auto-degrades on failure or empty result)
-│ ├── Agentic RAG (LangGraph + Llama-3.1-8B)
-│ ├── Graph RAG (GLiNER NER + Kuzu Cypher)
-│ ├── Hybrid search (Qdrant dense + BM25s sparse → RRF)
-│ └── Direct LLM (last resort, no context)
-│
-├── Cross-encoder reranker (BAAI/bge-reranker-large, local)
-├── Context compression (LLMLingua-2, local)
-├── Answer generation (Llama-3.1-8B-Instruct, HF API)
-├── RAGAS evaluation (faithfulness · relevancy · precision)
-└── Observability trace (all stages → Postgres)
+    │
+    ├── Cache lookup (LRU in-memory, SHA-256 key, 1hr TTL)
+    │       └── HIT → return instantly
+    │
+    ├── Agentic router (Phi-3-mini, HF API)
+    │       └── hybrid | graph | agentic
+    │
+    ├── Multi-query expansion (5 variants, Phi-3-mini)
+    │
+    ├── Fallback chain (auto-degrades on failure or empty result)
+    │       ├── Agentic RAG  (LangGraph + Llama-3.1-8B)
+    │       ├── Graph RAG    (GLiNER NER + Kuzu Cypher)
+    │       ├── Hybrid search (Qdrant dense + BM25s sparse → RRF)
+    │       └── Direct LLM   (last resort, no context)
+    │
+    ├── Cross-encoder reranker (BAAI/bge-reranker-large, local)
+    ├── Context compression  (LLMLingua-2, local)
+    ├── Answer generation    (Llama-3.1-8B-Instruct, HF API)
+    ├── RAGAS evaluation     (faithfulness · relevancy · precision)
+    └── Observability trace  (all stages → Postgres)
+```
 
 Every retrieval strategy also honours an optional **document-scope filter**, so
 a query can be restricted to a single source in a multi-document knowledge base.
@@ -240,20 +242,23 @@ No API calls are made during tests — all LLM and retriever calls are mocked.
 ---
 
 ## Project structure
+
+```
 omnirag/
-├── config/ # settings.py — single source of truth
-├── db/ # Postgres pool + schema bootstrap
-├── ingestion/ # document parsing, chunking, embedding, indexing
-├── retrieval/ # dense, sparse, hybrid, graph, reranker, multi-query
-├── cache/ # LRU in-memory cache (swap backend to Redis for prod)
-├── resilience/ # fallback chain with auto-degradation
-├── observability/ # per-query structured traces to Postgres
-├── agents/ # router, agentic RAG graph, context compressor
-├── generation/ # Llama-3.1-8B generator with citation injection
-├── evaluation/ # RAGAS pipeline + Postgres logger
-├── api/ # FastAPI endpoints + Pydantic schemas
-├── frontend/ # Streamlit dashboard (3 tabs)
-└── tests/ # pytest unit tests, all mocked
+├── config/          # settings.py — single source of truth
+├── db/              # Postgres pool + schema bootstrap
+├── ingestion/       # document parsing, chunking, embedding, indexing
+├── retrieval/       # dense, sparse, hybrid, graph, reranker, multi-query
+├── cache/           # LRU in-memory cache (swap backend to Redis for prod)
+├── resilience/      # fallback chain with auto-degradation
+├── observability/   # per-query structured traces to Postgres
+├── agents/          # router, agentic RAG graph, context compressor
+├── generation/      # Llama-3.1-8B generator with citation injection
+├── evaluation/      # RAGAS pipeline + Postgres logger
+├── api/             # FastAPI endpoints + Pydantic schemas
+├── frontend/        # Streamlit dashboard (3 tabs)
+└── tests/           # pytest unit tests, all mocked
+```
 
 ---
 
